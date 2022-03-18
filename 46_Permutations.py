@@ -10,22 +10,20 @@ class Solution:
         output = []
         temp = nums[:]
         
-        def helper(start, stop, candidate):
+        def helper(start, stop, arr):
             if start == stop:
-                output.append(candidate[:])
+                output.append(arr[:])
                 return
             for i in range(start, stop + 1):
-                candidate[start], candidate[i] = candidate[i], candidate[start]
-                helper(start + 1, stop, candidate)
-                candidate[start], candidate[i] = candidate[i], candidate[start]
+                arr[start], arr[i] = arr[i], arr[start]
+                helper(start + 1, stop, arr)
+                arr[start], arr[i] = arr[i], arr[start]
 
         helper(0, len(nums) - 1, temp)
         return output
     
     
 if __name__ == '__main__':
-    
-
     
     nums = [1, 2, 3]
     res = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
