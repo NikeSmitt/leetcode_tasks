@@ -7,16 +7,16 @@ class Solution:
         if not len(nums):
             return -1
 
-        left, right = 0, len(nums) - 1
+        left, right = 0, len(nums)
 
-        while left <= right:
+        while left < right:
             middle = (left + right) // 2
             if nums[middle] == target:
                 return middle
             if target > nums[middle]:
                 left = middle + 1
             else:
-                right = middle - 1
+                right = middle
 
         return -1
 
