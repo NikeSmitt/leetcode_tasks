@@ -12,7 +12,7 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--folder', help='Name of folder')
     args = parser.parse_args()
     file_name_args = args.file_name
-    folder_name = args.folder
+    folder_name = args.folder or ''
     file_name = ''
     
     # file name normalizing
