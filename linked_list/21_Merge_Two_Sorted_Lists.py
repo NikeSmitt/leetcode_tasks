@@ -51,13 +51,38 @@ class Solution:
             pointer_1 = pointer_1.next
 
         return head.next
+    
+    @staticmethod
+    def merge_two_lists_2(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        sentinel = ListNode()
+        tail = sentinel
+        
+        while True:
+            if list1 is None:
+                tail.next = list2
+                break
+            if list2 is None:
+                tail.next = list1
+                break
+                
+            if list1.val <= list2.val:
+                tail.next = list1
+                list1 = list1.next
+                
+            else:
+                tail.next = list2
+                list2 = list2.next
+                
+            tail = tail.next
+            
+        return sentinel.next
 
 
 l_1 = ListNode(1, ListNode(2, ListNode(4)))
 l_2 = ListNode(1, ListNode(3, ListNode(4)))
 
-print(Solution.merge_two_lists(l_1, l_2))
+print(Solution.merge_two_lists_2(l_1, l_2))
 
-print(Solution.merge_two_lists(None, None))
-print(Solution.merge_two_lists(None, ListNode(0)))
+# print(Solution.merge_two_lists(None, None))
+# print(Solution.merge_two_lists(None, ListNode(0)))
 
