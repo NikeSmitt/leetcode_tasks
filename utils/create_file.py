@@ -2,6 +2,7 @@
 
 import argparse
 import os.path
+from pathlib import Path
 
 
 class FileAlreadyExistsError(Exception):
@@ -24,7 +25,10 @@ if __name__ == '__main__':
         file_name += '.py'
     
     # create filepath
-    file_path = os.path.join('..', folder_name, file_name)
+    path = Path(__file__).parent.parent
+    file_path = os.path.join(path,  folder_name, file_name)
+    print(file_path)
+    
     try:
         os.mkdir(os.path.join('..', folder_name))
     except OSError as e:
