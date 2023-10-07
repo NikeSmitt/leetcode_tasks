@@ -30,11 +30,40 @@ class TreeNode:
 
 
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        pass
+    
+    def __init__(self, ver=1):
+        match ver:
+            case 1:
+                
+                self.invertTree = self._invert_tree_ver_1
+            case 2:
+                self.invertTree = self._invert_tree_ver_2
+    
+    def _invert_tree_ver_1(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        
+        def helper(node):
+            if node is None:
+                return
+            node.left, node.right = node.right, node.left
+            helper(node.left)
+            helper(node.right)
+        
+        helper(root)
+        return root
+    
+    def _invert_tree_ver_2(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root is None:
+            return None
+        self._invert_tree_ver_2(root.left)
+        self._invert_tree_ver_2(root.right)
+        
+        root.left, root.right = root.right, root.left
+        return root
 
 
 if __name__ == '__main__':
     a = [4, 2, 7, 1, 3, 6, 9]
     tree = TreeNode.create_tree(a)
-    print(tree)
+    s = Solution(ver=2)
+    root = s.invertTree(tree)
+    print(root)
